@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
+# a shell script doing ssh connection to a remote server
 ssh -i ~/.ssh/school ubuntu@8.8.8.8
