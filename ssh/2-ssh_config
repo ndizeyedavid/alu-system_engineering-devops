@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # Configuring ssh to not require password on login
-ssh-copy-id -i "sample/school_rsa" ubuntu@98.98.98.98
+ssh-copy-id -i "~/.ssh/school" ubuntu@98.98.98.98
