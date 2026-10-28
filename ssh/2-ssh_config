@@ -1,3 +1,6 @@
-Host *
+Host web01
+    HostName 18.130.141.151
+    User ubuntu
+    Port 22
     IdentityFile ~/.ssh/school
     PasswordAuthentication no
