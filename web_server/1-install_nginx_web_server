@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# installing nginx on my web-01 server
+
+apt-get update -y
+apt-get install -y nginx
+
+echo "Holberton School for the win!" > /var/www/html/index.html
+
+sed -i 's/listen 80 default_server;/listen 80 default_server;/' /etc/nginx/sites-available/default
+
+service nginx restart
