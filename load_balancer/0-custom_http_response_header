@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Configuring nginx with a custom http response header
+
+apt-get update -y
+apt-get install -y nginx
+
+sudo mkdir -p /etc/nginx/conf.d
+
+sudo tee /etc/nginx/conf.d/0-custom_http_response_header.conf > /dev/null <<EOF
+add_header X-Served-By $hostname always;
+EOF
+
+sudo nginx -t
+
+sudo service nginx restart
