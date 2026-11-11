@@ -7,6 +7,9 @@ apt-get install -y haproxy
 WEB01_PRIVATE_IP="10.30.0.109"
 WEB02_PRIVATE_IP="10.30.5.15"
 
+echo "Configured backend: web-01 (${WEB01_PRIVATE_IP})"
+echo "Configured backend: web-02 (${WEB02_PRIVATE_IP})"
+
 cat > /etc/haproxy/haproxy.cfg <<EOF
 global
     log /dev/log local0
@@ -39,6 +42,7 @@ update-rc.d haproxy defaults
 
 service haproxy restart
 
-service haproxy status
+echo "HAProxy backend configuration:"
+cat /etc/haproxy/haproxy.cfg
 
-echo "Load balancer configured successfully for web-01 and web-02"
+service haproxy status
