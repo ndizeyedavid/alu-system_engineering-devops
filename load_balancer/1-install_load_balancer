@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Setting up my load-balancer to do the round-robin
+
+apt-get update -y
+apt-get install -y haproxy
+
+WEB01_PRIVATE_IP="10.30.0.109"
+WEB02_PRIVATE_IP="10.30.5.15"
+
+cat > /etc/haproxy/haproxy.cfg <<EOF
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    maxconn 2048
+
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    timeout connect 5000
+    timeout client 50000
+    timeout server 50000
+
+frontend http_front
+    bind *:80
+    default_backend web_servers
+
+backend web_servers
+    balance roundrobin
+    option httpchk GET /
+    server web-01 ${WEB01_PRIVATE_IP}:80 check
+    server web-02 ${WEB02_PRIVATE_IP}:80 check
+EOF
+
+haproxy -c -f /etc/haproxy/haproxy.cfg
+
+update-rc.d haproxy defaults
+
+service haproxy restart
+
+service haproxy status
+
+echo "HAProxy successfully installed and configured!"
