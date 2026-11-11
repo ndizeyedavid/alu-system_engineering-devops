@@ -41,4 +41,4 @@ service haproxy restart
 
 service haproxy status
 
-echo "HAProxy successfully installed and configured!"
+echo "Load balancer configured successfully for web-01 and web-02"
