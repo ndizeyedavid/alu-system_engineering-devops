@@ -6,7 +6,7 @@ apt-get install -y nginx
 
 sudo mkdir -p /etc/nginx/conf.d
 
-sudo tee /etc/nginx/conf.d/0-custom_http_response_header.conf > /dev/null <<EOF
+sudo tee /etc/nginx/conf.d/0-custom_http_response_header.conf > /dev/null <<'EOF'
 add_header X-Served-By $hostname always;
 EOF
 
