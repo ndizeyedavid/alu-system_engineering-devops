@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# checking who another user is without altering my session
+
+su -s /bin/sh "$1" -c "whoami"
